@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>悦兔AI科技 - 打造高品质主题社群与消费指南服务</title>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-light: #8BC34A;
+            --secondary: #CDDC39;
+            --accent: #FFC107;
+            --dark: #2E3D33;
+            --light: #F1F8E9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            color: #2E3D33;
+            line-height: 1.6;
+            background-color: #F1F8E9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* 导航栏样式 */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo::before {
+            content: "🐇";
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            background: #43A047;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        /* 英雄区域样式 */
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><text x="50%" y="50%" font-size="20" text-anchor="middle" dominant-baseline="middle" fill="white">悦兔科技</text></svg>');
+            opacity: 0.1;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* 服务部分样式 */
+        .services {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .section-title p {
+            color: #777;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid #E8F5E9;
+            text-align: center;
+            position: relative;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 15px 0 0 15px;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.15);
+        }
+        
+        .service-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            background: rgba(76, 175, 80, 0.1);
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* 特色优势部分 */
+        .advantages {
+            padding: 80px 0;
+            background: var(--light);
+        }
+        
+        .advantage-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .advantage-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border: 1px solid #E8F5E9;
+            position: relative;
+        }
+        
+        .advantage-item::before {
+            content: '✓';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .advantage-item h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-top: 10px;
+        }
+        
+        /* 社群类型展示 */
+        .communities {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .community-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border: 2px solid var(--primary-light);
+            text-align: center;
+        }
+        
+        .community-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        /* 加入我们部分 */
+        .join {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .join::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><text x="50%" y="50%" font-size="20" text-anchor="middle" dominant-baseline="middle" fill="white">加入我们</text></svg>');
+            opacity: 0.1;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: var(--secondary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .community-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">悦兔AI科技</div>
+                <ul class="nav-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#services">核心业务</a></li>
+                    <li><a href="#communities">加入社群</a></li>
+                    <li><a href="#join" class="btn">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>连接兴趣，发现生活，畅游世界</h1>
+            <p>悦兔AI科技专注于基于AI技术，打造高品质主题社群，提供本地生活消费指南与深度旅行规划服务，为客户提供专业价值</p>
+            <a href="#join" class="btn">了解会员服务</a>
+        </div>
+    </section>
+
+    <!-- 服务部分 -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>核心业务</h2>
+                <p>专注于三大领域，提供深度垂直服务</p>
+            </div>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>垂直领域兴趣社群</h3>
+                    <p>运营多个高品质主题社群，提供深度内容资讯与交流环境，连接同好伙伴。</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>本地生活消费指南</h3>
+                    <p>精选珠海本地精品生活优惠，提供消费决策支持，打造高品质本地生活圈。</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3>深度旅行规划服务</h3>
+                    <p>提供个性化旅行路线规划与特价票务服务，让每一次出行都充满惊喜。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色优势部分 -->
+    <section class="advantages" id="advantages">
+        <div class="container">
+            <div class="section-title">
+                <h2>我们的优势</h2>
+                <p>为什么选择悦兔AI科技的服务？</p>
+            </div>
+            
+            <div class="advantage-list">
+                <div class="advantage-item">
+                    <h3>技术驱动</h3>
+                    <p>基于先进AI算法，非简单信息搬运，提供深度数据分析和智能推荐。</p>
+                </div>
+                
+                <div class="advantage-item">
+                    <h3>无骚扰环境</h3>
+                    <p>严格控制推送频率，拒绝垃圾信息轰炸，打造纯净购物咨询环境。</p>
+                </div>
+                
+                <div class="advantage-item">
+                    <h3>完全合规</h3>
+                    <p>基于企业微信正规运营，所有服务符合平台规则，保障账号安全。</p>
+                </div>
+                
+                <div class="advantage-item">
+                    <h3>客观中立</h3>
+                    <p>基于数据说话，不做虚假宣传，建立长期可信的购物指导服务。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 社群类型展示 -->
+    <section class="communities" id="communities">
+        <div class="container">
+            <div class="section-title">
+                <h2>热门社群推荐</h2>
+                <p>选择您感兴趣的领域加入</p>
+            </div>
+            
+            <div class="community-grid">
+                <!-- 兴趣社群 (作为引流和信任建设) -->
+                <div class="community-card">
+                    <h3>👨‍👩‍👧‍👦 珠海亲子游玩探索团</h3>
+                    <p>分享优质亲子目的地、育儿经验，组织线下活动，纯交流无广告。</p>
+                    <small style="color: var(--primary); font-weight: 500;">🏷 兴趣交流</small>
+                </div>
+                
+                <div class="community-card">
+                    <h3>🍽 大湾区美食地图</h3>
+                    <p>发现珠海及周边地道美食，分享探店攻略，做个快乐的吃货。</p>
+                    <small style="color: var(--primary); font-weight: 500;">🏷 兴趣交流</small>
+                </div>
+                
+                <div class="community-card">
+                    <h3>📚 悦读成长读书会</h3>
+                    <p>每月共读一本好书，分享思考与感悟，在阅读中共同成长。</p>
+                    <small style="color: var(--primary); font-weight: 500;">🏷 兴趣交流</small>
+                </div>
+
+                <!-- 商业化社群 (清晰的价值服务) -->
+                <div class="community-card">
+                    <h3>🎯 精品购物推荐群</h3>
+                    <p>每日精选高性价比商品，提供AI比价与购买建议</p>
+                </div>
+                
+                <div class="community-card">
+                    <h3>🏠 珠海生活优惠群</h3>
+                    <p>本地餐饮、娱乐、教育等生活服务特惠信息</p>
+                </div>
+                
+                <div class="community-card">
+                    <h3>✈️ 旅行达人计划群</h3>
+                    <p>旅游攻略分享、特价票务与个性化路线规划</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 加入我们部分 -->
+    <section class="join" id="join">
+        <div class="container">
+            <div class="section-title">
+                <h2>开启您的品质生活之旅</h2>
+                <p>扫描二维码添加企业微信客服，了解详情并加入感兴趣的社群</p>
+            </div>
+            
+            <div style="background: white; display: inline-block; padding: 20px; border-radius: 15px; margin: 30px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://work.weixin.qq.com/u/vceda47eba305abcee?v=5.0.0.56142&bb=46587893c2" alt="企业微信客服二维码" style="width: 150px;">
+                <p style="margin-top: 10px; color: var(--dark);">扫码添加企业微信客服</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>悦兔AI科技有限公司专注于通过AI技术，重构主题社群运营，为用户提供有价值的生活消费与旅行规划服务。</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱: contact@yuetool.com</p>
+                    <p>电话: 400-123-4567</p>
+                    <p>地址: 广东省珠海市香洲区</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <p>微信公众号: 悦兔AI科技</p>
+                    <p>抖音: @悦兔AI科技</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 悦兔人工智能科技有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
